@@ -33,3 +33,9 @@ conda activate visa
 ```bash
 pip install -r requirements.txt
 ```
+
+## WorkFlow: 
+1. Constants
+2. Entity
+3. Components
+4. Pipleline update
