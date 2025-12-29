@@ -1,0 +1,40 @@
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Data & ML artifacts
+data/
+datasets/
+artifacts/
+models/
+mlruns/
+dvc.lock
+.dvc/
+.dvc/cache/
+
+# Notebooks
+*.ipynb
+.ipynb_checkpoints/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests & misc
+tests/
+coverage/

@@ -3,7 +3,7 @@ from datetime import date
 
 DATABASE_NAME = "US_VISA"
 COLLECTION_NAME = "visa_data"
-MONGOBD_URL_KEY = "mongodb+srv://muklops:prajapati5@cluster0.httkept.mongodb.net/?appName=Cluster0"
+MONGODB_URL_KEY = "MONGODB_URL"
 
 PIPELINE_NAME: str = "usvisa"
 ARTIFACT_DIR: str = "artifact"
