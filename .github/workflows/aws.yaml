@@ -28,31 +28,26 @@ jobs:
           docker push 062700375554.dkr.ecr.us-east-1.amazonaws.com/visa:latest
 
   Continuous-Deployment:
-    needs: Continuous-Integration
-    runs-on: self-hosted
+  needs: Continuous-Integration
+  runs-on: self-hosted
 
-    steps:
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-region: us-east-1   # IAM role preferred
+  steps:
+    - name: Login to Amazon ECR
+      uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v2
+    - name: Pull image from ECR
+      run: |
+        docker pull 062700375554.dkr.ecr.us-east-1.amazonaws.com/visa:latest
 
-      - name: Pull image from ECR
-        run: |
-          docker pull 062700375554.dkr.ecr.us-east-1.amazonaws.com/visa:latest
+    - name: Stop old container
+      run: |
+        docker stop visa || true
+        docker rm visa || true
 
-      - name: Stop old container
-        run: |
-          docker stop visa || true
-          docker rm visa || true
-
-      - name: Run Docker Image
-        run: |
-          docker run -d \
-            --name visa \
-            -p 8080:8080 \
-            -e MONGODB_URL="${{ secrets.MONGODB_URL }}" \
-            062700375554.dkr.ecr.us-east-1.amazonaws.com/visa:latest
+    - name: Run Docker Image
+      run: |
+        docker run -d \
+          --name visa \
+          -p 8080:8080 \
+          -e MONGODB_URL="${{ secrets.MONGODB_URL }}" \
+          062700375554.dkr.ecr.us-east-1.amazonaws.com/visa:latest
