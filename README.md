@@ -36,7 +36,7 @@ pip install -r requirements.txt
 
 ## WorkFlow: 
 1. Constants
-2. Entity
+2. Entity-Config & Artifact
 3. Components
 4. Pipleline update
 5. Main file

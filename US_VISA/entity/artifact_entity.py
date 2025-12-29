@@ -14,3 +14,10 @@ class DataValidationArtifact:
     message: str
     drift_report_file_path: str        # YAML / JSON
     drift_report_html_path: str        # HTML
+
+
+@dataclass
+class DataTransformationArtifact:
+    transformed_object_file_path:str 
+    transformed_train_file_path:str
+    transformed_test_file_path:str
