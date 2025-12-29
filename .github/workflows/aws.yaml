@@ -6,6 +6,9 @@ on:
       - main
 
 jobs:
+  # =========================
+  # CONTINUOUS INTEGRATION
+  # =========================
   Continuous-Integration:
     runs-on: ubuntu-latest
 
@@ -28,15 +31,22 @@ jobs:
           docker build -t 062700375554.dkr.ecr.us-east-1.amazonaws.com/visa:latest .
           docker push 062700375554.dkr.ecr.us-east-1.amazonaws.com/visa:latest
 
+
+  # =========================
+  # CONTINUOUS DEPLOYMENT
+  # =========================
   Continuous-Deployment:
     needs: Continuous-Integration
     runs-on: self-hosted
 
+    # 👇 REGION MUST BE PROVIDED VIA ENV (NOT action input)
+    env:
+      AWS_REGION: us-east-1
+      AWS_DEFAULT_REGION: us-east-1
+
     steps:
       - name: Login to Amazon ECR (using EC2 IAM Role)
         uses: aws-actions/amazon-ecr-login@v2
-        with:
-          region: us-east-1
 
       - name: Pull Docker image from ECR
         run: |
