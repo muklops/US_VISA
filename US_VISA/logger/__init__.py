@@ -1,17 +1,17 @@
 import logging
 import os
-
-from from_root import from_root
 from datetime import datetime
 
 LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
 
-log_dir = 'logs'
+log_dir = "logs"
 
-logs_path = os.path.join(from_root(), log_dir, LOG_FILE)
+# ✅ Container-safe base directory
+BASE_DIR = os.getcwd()
 
-os.makedirs(log_dir, exist_ok=True)
+logs_path = os.path.join(BASE_DIR, log_dir, LOG_FILE)
 
+os.makedirs(os.path.join(BASE_DIR, log_dir), exist_ok=True)
 
 logging.basicConfig(
     filename=logs_path,
